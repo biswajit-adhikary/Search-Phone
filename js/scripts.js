@@ -5,6 +5,9 @@ const getPhone = () => {
     const searchValue = searchInput.value;
     searchInput.value = '';
 
+    const detailsDiv = document.getElementById('details-div');
+    detailsDiv.innerHTML = '';
+
     // Error handling & get data
     const errorDiv = document.getElementById('error');
     const mainDiv = document.getElementById('main-div');
@@ -41,9 +44,9 @@ const displayPhone = phones => {
                     <img src="${phone.image}" class="card-img-top" alt="">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">${phone.phone_name}</h5>
-                    <p class="card-text">${phone.brand}</p>
-                    <button class="btn btn-primary">Details</button>
+                    <h5 class="card-title">Name: ${phone.phone_name}</h5>
+                    <p class="card-text">Brand: ${phone.brand}</p>
+                    <button class="btn btn-primary" onclick="getDetails('${phone.slug}')">Details</button>
                 </div>
             </div>
         `;
@@ -51,4 +54,51 @@ const displayPhone = phones => {
         })
     }
 
+}
+
+// Function for get details
+const getDetails = id => {
+    const detailsUrl = `https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(detailsUrl)
+        .then(res => res.json())
+        .then(data => showDetails(data.data));
+}
+
+// Function for display details
+const showDetails = details => {
+    console.log(details);
+    const detailsDiv = document.getElementById('details-div');
+    detailsDiv.innerHTML = `
+        <div class="card mb-4">
+            <div class="card-image text-center">
+                <img src="${details.image}"class="card-img-top" alt="">
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title">Name: Name: ${details.name}</h5>
+                <h6 class="card-text">Brand: ${details.brand}</h6>
+                <p class="card-text">Release date: ${details.releaseDate ? details.releaseDate : 'No Date Found.'}</p>
+            </div>
+            <div class="card-details">
+                <div class="details-text">
+                    <h3>Main Features:</h3>
+                    <p>
+                        Storage: ${details.mainFeatures.storage ? details.mainFeatures.storage : 'No Date Found'} <br>
+                        Display Size: ${details.mainFeatures.displaySize ? details.mainFeatures.displaySize : 'No Data Found'} <br>
+                        Chip Set: ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet : 'No Data Found'} <br>
+                        Memory: ${details.mainFeatures.memory ? details.mainFeatures.memory : 'No Data Found'} <br>
+                    </P>
+                    <h3>Sensors</h3>
+                    <p>
+                        ${details.mainFeatures.sensors[0] ? details.mainFeatures.sensors[0] : ''} <br>
+                        ${details.mainFeatures.sensors[1] ? details.mainFeatures.sensors[1] : ''} <br>
+                        ${details.mainFeatures.sensors[2] ? details.mainFeatures.sensors[2] : ''} <br>
+                        ${details.mainFeatures.sensors[3] ? details.mainFeatures.sensors[3] : ''} <br>
+                        ${details.mainFeatures.sensors[4] ? details.mainFeatures.sensors[4] : ''} <br>
+                        ${details.mainFeatures.sensors[5] ? details.mainFeatures.sensors[5] : ''} <br>
+                        ${details.mainFeatures.sensors[6] ? details.mainFeatures.sensors[6] : ''} <br>
+                    </P>
+                </div>
+            </div>
+        </div>
+    `;
 }

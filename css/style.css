@@ -9,3 +9,11 @@ Custom CSS
     height: 200px;
     width: auto;
 }
+
+.details-text {
+    padding: 15px;
+}
+
+.details-text h3 {
+    font-size: 22px;
+}
