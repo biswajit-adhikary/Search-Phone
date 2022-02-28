@@ -15,6 +15,8 @@ const getPhone = () => {
         errorDiv.innerHTML = `<p class="text-danger">Please write Phone name!</p>`;
         mainDiv.innerHTML = '';
     } else {
+        // Show Spinner
+        toggleSpinner('block');
         // Get Data From API
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
         fetch(url)
@@ -31,6 +33,8 @@ const displayPhone = phones => {
     const errorDiv = document.getElementById('error');
     if (phones.length == 0) {
         errorDiv.innerHTML = `<p class="text-danger">No phone found!</p>`;
+        // Hide Spinner
+        toggleSpinner('none');
     } else {
         errorDiv.innerHTML = ``;
         // Get first 20 data
@@ -39,19 +43,21 @@ const displayPhone = phones => {
             const newCol = document.createElement('div');
             newCol.classList.add('col-lg-4');
             newCol.innerHTML = `
-            <div class="card mb-4 text-center">
-                <div class="card-image">
-                    <img src="${phone.image}" class="card-img-top" alt="">
+                <div class="card mb-4 text-center">
+                    <div class="card-image">
+                        <img src="${phone.image}" class="card-img-top" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Name: ${phone.phone_name}</h5>
+                        <p class="card-text">Brand: ${phone.brand}</p>
+                        <button class="btn btn-primary" onclick="getDetails('${phone.slug}')">Details</button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Name: ${phone.phone_name}</h5>
-                    <p class="card-text">Brand: ${phone.brand}</p>
-                    <button class="btn btn-primary" onclick="getDetails('${phone.slug}')">Details</button>
-                </div>
-            </div>
-        `;
+            `;
             mainDiv.appendChild(newCol);
         })
+        // Hide Spinner
+        toggleSpinner('none');
     }
 
 }
@@ -101,4 +107,10 @@ const showDetails = details => {
             </div>
         </div>
     `;
+}
+
+// Add spinner
+const toggleSpinner = style => {
+    const spinDiv = document.getElementById('spinner');
+    spinDiv.style.display = style;
 }
