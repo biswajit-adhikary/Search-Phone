@@ -72,7 +72,6 @@ const getDetails = id => {
 
 // Function for display details
 const showDetails = details => {
-    console.log(details);
     const detailsDiv = document.getElementById('details-div');
     detailsDiv.innerHTML = `
         <div class="card mb-4">
@@ -80,7 +79,7 @@ const showDetails = details => {
                 <img src="${details.image}"class="card-img-top" alt="">
             </div>
             <div class="card-body text-center">
-                <h5 class="card-title">Name: Name: ${details.name}</h5>
+                <h5 class="card-title">Name: ${details.name}</h5>
                 <h6 class="card-text">Brand: ${details.brand}</h6>
                 <p class="card-text">Release date: ${details.releaseDate ? details.releaseDate : 'No Date Found.'}</p>
             </div>
@@ -88,10 +87,10 @@ const showDetails = details => {
                 <div class="details-text">
                     <h3>Main Features:</h3>
                     <p>
-                        Storage: ${details.mainFeatures.storage ? details.mainFeatures.storage : 'No Date Found'} <br>
-                        Display Size: ${details.mainFeatures.displaySize ? details.mainFeatures.displaySize : 'No Data Found'} <br>
-                        Chip Set: ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet : 'No Data Found'} <br>
-                        Memory: ${details.mainFeatures.memory ? details.mainFeatures.memory : 'No Data Found'} <br>
+                        <b>Storage:</b> ${details.mainFeatures.storage ? details.mainFeatures.storage : 'No Date Found'} <br>
+                        <b>Display Size:</b> ${details.mainFeatures.displaySize ? details.mainFeatures.displaySize : 'No Data Found'} <br>
+                        <b>Chip Set:</b> ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet : 'No Data Found'} <br>
+                        <b>Memory:</b> ${details.mainFeatures.memory ? details.mainFeatures.memory : 'No Data Found'} <br>
                     </P>
                     <h3>Sensors</h3>
                     <p>
