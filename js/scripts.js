@@ -12,7 +12,7 @@ const getPhone = () => {
     const errorDiv = document.getElementById('error');
     const mainDiv = document.getElementById('main-div');
     if (searchValue == '') {
-        errorDiv.innerHTML = `<p class="text-danger">Please write Phone name!</p>`;
+        errorDiv.innerHTML = `<p class="text-danger">Please write phone name!</p>`;
         mainDiv.innerHTML = '';
     } else {
         // Show Spinner
@@ -72,6 +72,7 @@ const getDetails = id => {
 
 // Function for display details
 const showDetails = details => {
+    console.log(details);
     const detailsDiv = document.getElementById('details-div');
     detailsDiv.innerHTML = `
         <div class="card mb-4">
@@ -80,19 +81,28 @@ const showDetails = details => {
             </div>
             <div class="card-body text-center">
                 <h5 class="card-title">Name: ${details.name}</h5>
+                <h6 class="card-text">Release date: ${details.releaseDate ? details.releaseDate : 'No Release Date Found.'}</h6>
                 <h6 class="card-text">Brand: ${details.brand}</h6>
-                <p class="card-text">Release date: ${details.releaseDate ? details.releaseDate : 'No Date Found.'}</p>
             </div>
             <div class="card-details">
                 <div class="details-text">
                     <h3>Main Features:</h3>
                     <p>
-                        <b>Storage:</b> ${details.mainFeatures.storage ? details.mainFeatures.storage : 'No Date Found'} <br>
+                        <b>Storage:</b> ${details.mainFeatures.storage ? details.mainFeatures.storage : 'No Data Found'} <br>
                         <b>Display Size:</b> ${details.mainFeatures.displaySize ? details.mainFeatures.displaySize : 'No Data Found'} <br>
                         <b>Chip Set:</b> ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet : 'No Data Found'} <br>
                         <b>Memory:</b> ${details.mainFeatures.memory ? details.mainFeatures.memory : 'No Data Found'} <br>
                     </P>
-                    <h3>Sensors</h3>
+                    <h3>Other:</h3>
+                    <p>
+                        <b>Bluetooth:</b> ${details.others ? details.others.Bluetooth : 'No Data Found'} <br>
+                        <b>GPS:</b> ${details.others ? details.others.GPS : 'No Data Found'} <br>
+                        <b>NFC:</b> ${details.others ? details.others.NFC : 'No Data Found'} <br>
+                        <b>Radio:</b> ${details.others ? details.others.Radio : 'No Data Found'} <br>
+                        <b>USB:</b> ${details.others ? details.others.USB : 'No Data Found'} <br>
+                        <b>WLAN:</b> ${details.others ? details.others.WLAN : 'No Data Found'} <br>
+                    </P>
+                    <h3>Sensors:</h3>
                     <p>
                         ${details.mainFeatures.sensors[0] ? details.mainFeatures.sensors[0] : ''} <br>
                         ${details.mainFeatures.sensors[1] ? details.mainFeatures.sensors[1] : ''} <br>
