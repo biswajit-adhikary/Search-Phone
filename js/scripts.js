@@ -30,7 +30,9 @@ const displayPhone = phones => {
         errorDiv.innerHTML = `<p class="text-danger">No phone found!</p>`;
     } else {
         errorDiv.innerHTML = ``;
-        phones.forEach(phone => {
+        // Get first 20 data
+        const phonList = phones.slice(0, 20);
+        phonList.forEach(phone => {
             const newCol = document.createElement('div');
             newCol.classList.add('col-lg-4');
             newCol.innerHTML = `
