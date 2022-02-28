@@ -1,0 +1,10 @@
+/* 
+Custom CSS
+*/
+.card-image {
+    margin: 15px auto;
+}
+
+.card-image img {
+    height: 200px;
+}
