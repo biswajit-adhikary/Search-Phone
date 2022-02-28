@@ -72,7 +72,6 @@ const getDetails = id => {
 
 // Function for display details
 const showDetails = details => {
-    console.log(details);
     const detailsDiv = document.getElementById('details-div');
     detailsDiv.innerHTML = `
         <div class="card mb-4">
