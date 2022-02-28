@@ -2,9 +2,10 @@
 Custom CSS
 */
 .card-image {
-    margin: 15px auto;
+    margin: 15px;
 }
 
 .card-image img {
     height: 200px;
+    width: auto;
 }
